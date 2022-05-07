@@ -42,7 +42,7 @@ BEGIN
            where hallOfFame=1 and teamName = tm and sport = spt
            group by teamName, sport;
 	ELSE
-	   select 'ERROR' as teamName
+	   select 'ERROR' as teamName;
 	END IF;
         
 END; //
@@ -92,7 +92,8 @@ BEGIN
 	IF EXISTS (select * from MetroArea where metroAreaName = mtrA) THEN
            select metroAreaName, count(distinct mvp) as 'numMVP'
            FROM Team NATURAL JOIN Season
-           group by metroAreaName;
+           group by metroAreaName
+	   having metroAreaName=mtrA;
 	ELSE
 	   select 'ERROR' as metroAreaName;
 	END IF;

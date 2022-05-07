@@ -1,11 +1,12 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h1>Metro-Areas have at least 4 teams with at least a 50% win percentage each year
+<h1>Metro-Areas have at least [insert number here] teams with at least a 50% win percentage each year
 </h1>
 <body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure4()";
+    $numTeams = $_POST['numTeams'];
+    $aQuery = "CALL Procedure4('".$numTeams."');";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";

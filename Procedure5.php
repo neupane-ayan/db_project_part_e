@@ -3,7 +3,8 @@
 <h2>Number of mvps (most-valuable-player) have been on a team in each metro-area</h2>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure5()";
+    $metroAreaName = $_POST['metroAreaName'];
+    $aQuery = "CALL Procedure5('".$metroAreaName."');";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";

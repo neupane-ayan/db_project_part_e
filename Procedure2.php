@@ -5,7 +5,9 @@
 <body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure2()";
+    $teamName = $_POST['teamName'];
+    $sport = $_POST['sport'];
+    $aQuery = "CALL Procedure2('".$teamName."', '".$sport."');";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";

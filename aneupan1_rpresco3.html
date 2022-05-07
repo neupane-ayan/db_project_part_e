@@ -13,6 +13,13 @@ a team in every sport in the last 20 years</h3>
 	
 	<h3>Number of Hall-of-Fame caliber players been on each team</h3>
         <form action="Procedure2.php" method="post">
+	  Team Name: <input type="text" name="teamName"> <br/>
+	  Select a sport:<select name="sport" id="sport">
+	    <option value="basketball">Basketball</option>
+	    <option value="football">Football</option>
+	    <option value="hockey">Hockey</option>
+	    <option value="baseball">Baseball</option>
+	  </select>
           <input type="submit">
         </form>
         <br/><br/>
@@ -24,15 +31,17 @@ a team in every sport in the last 20 years</h3>
         </form>
         <br/><br/>
 
-	<h3>Metro-Areas have at least 4 teams with at least a 50% win percentage each year</h3>
+	<h3>Metro-Areas have at least [insert number here] teams with at least a 50% win percentage each year</h3>
         <form action="Procedure4.php" method="post">
-          <input type="submit">
+	  Number of Teams: <input type="text" name="numTeams"> <br/>
+	  <input type="submit">
         </form>
         <br/><br/>
 
 	<h3>Number of mvps (most-valuable-player) have been on a team in each metro-area</h3>
         <form action="Procedure5.php" method="post">
-          <input type="submit">
+	  MetroArea (please type camelcase with no spaces. i.e: Los Angeles is "LosAngeles"): <input type="text" name="metroAreaName"> <br/>
+	  <input type="submit">
         </form>
         <br/><br/>
 
@@ -93,6 +102,12 @@ a team in every sport in the last 20 years</h3>
 
 	<h3>Compare average metro-area GDP of NHL champions, NBA champions, NFL champions and MLB champions</h3>
         <form action="Procedure15.php" method="post">
+          <input type="submit">
+        </form>
+        <br/><br/>
+
+	<h3>INFORMATIONAL: See All Teams</h3>
+        <form action="seeTeams.php" method="post">
           <input type="submit">
         </form>
         <br/><br/>
