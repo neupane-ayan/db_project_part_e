@@ -199,11 +199,12 @@ BEGIN
 END; //
 
 -- Procedure 10
-CREATE PROCEDURE Procedure10()
+CREATE PROCEDURE Procedure10(IN mtrA VARCHAR(50))
 BEGIN
-        
-        select D.metroAreaName as metroAreaName, sport, `year`, gdp, D.winPercent as winPercent
-        from      
+
+	IF EXISTS (select * from MetroArea where metroAreaName = mtrA) THEN
+           select D.metroAreaName as metroAreaName, sport, `year`, gdp, D.winPercent as winPercent
+           from      
                 (select B.teamName as teamName, B.sport as sport, `year`, B.winPercent as winPercent, metroAreaName, gdp 
                 from
                         (select teamName, sport, `year`, wins/(wins+losses) as winPercent, metroAreaName, gdp
@@ -217,7 +218,7 @@ BEGIN
                         from TeamRecord
                         group by teamName, sport) as C
                 on B.teamName = C.teamName and B.sport = C.sport and B.winPercent = C.winPercent) as D
-        join
+           join
                 (select max(wins/(wins+losses)) as winPercent, metroAreaName
                 from TeamRecord
                 natural join
@@ -225,7 +226,10 @@ BEGIN
                         from MetroArea
                         natural join Team) as A
                 group by metroAreaName) as E
-        on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName; 
+           on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
