@@ -32,14 +32,18 @@ BEGIN
 END; //
 
 -- Procedure 2
-CREATE PROCEDURE Procedure2()
+CREATE PROCEDURE Procedure2(IN tm VARCHAR(3), IN spt VARCHAR(20))
 BEGIN
 
-        select distinct teamName, sport, count(hallOfFame) as 'numHoF'
-        from PlaysOn
-        natural join Player
-        where hallOfFame=1
-        group by teamName, sport;
+	IF EXISTS (select * from Team where teamName = tm and sport = spt) THEN
+           select distinct teamName, sport, count(hallOfFame) as 'numHoF'
+           from PlaysOn
+           natural join Player
+           where hallOfFame=1 and teamName = tm and sport = spt
+           group by teamName, sport;
+	ELSE
+	   select 'ERROR' as teamName
+	END IF;
         
 END; //
 
@@ -63,28 +67,35 @@ BEGIN
 END; //
 
 -- Procedure 4
-CREATE PROCEDURE Procedure4()
+CREATE PROCEDURE Procedure4(IN numTeams INT)
 BEGIN
 
-        select *
-        from MetroArea
-        natural join
+	IF numTeams > 0 THEN
+           select *
+           from MetroArea
+       	   natural join
                 (select metroAreaName, `year`
                 from TeamRecord
                 natural join Team
                 where wins/(wins+losses) >= 0.5
                 group by metroAreaName, `year`
-                having count(*) >= 4) as A;
+                having count(*) >= numTeams) as A;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
 -- Procedure 5
-CREATE PROCEDURE Procedure5()
+CREATE PROCEDURE Procedure5(IN mtrA VARCHAR(50))
 BEGIN
-
-        select metroAreaName, count(distinct mvp) as 'numMVP'
-        FROM Team NATURAL JOIN Season
-        group by metroAreaName;
+	IF EXISTS (select * from MetroArea where metroAreaName = mtrA) THEN
+           select metroAreaName, count(distinct mvp) as 'numMVP'
+           FROM Team NATURAL JOIN Season
+           group by metroAreaName;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
