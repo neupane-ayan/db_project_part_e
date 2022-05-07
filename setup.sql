@@ -46,7 +46,7 @@ END; //
 -- Procedure 3
 CREATE PROCEDURE Procedure3(IN yr CHAR(10))
 BEGIN
-	IF yr < '2001-01-01' or yr > '2020-01-01' THEN
+	IF yr > '2001-01-01' and yr < '2020-01-01' THEN
            select `year`, avg(gdp)
        	   from MetroArea as A
        	   natural join
