@@ -251,20 +251,24 @@ BEGIN
 END; //
 
 -- Procedure 12
-CREATE PROCEDURE Procedure12()
-BEGIN        
+CREATE PROCEDURE Procedure12(IN numHof INT)
+BEGIN
 
-        select metroAreaName, `year`, gdp, averageHousePrice
-        from MetroArea
-        natural join
+	IF numHof > 0 THEN
+           select metroAreaName, `year`, gdp, averageHousePrice
+           from MetroArea
+       	   natural join
                 (select `year`, metroAreaName
                 from Player
                 natural join PlaysOn
                 natural join Team
                 where hallOfFame=1
                 group by `year`, metroAreaName
-                having count(playerID) > 4) as A
-        order by `year`, metroAreaName;
+                having count(playerID) > numHof-1) as A
+       	   order by `year`, metroAreaName;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
@@ -288,20 +292,24 @@ BEGIN
 END; //
 
 -- Procedure 14
-CREATE PROCEDURE Procedure14()
+CREATE PROCEDURE Procedure14(IN numChm INT)
 BEGIN        
 
-        select metroAreaName, avg(gdp) as avggdp, championships
-        from MetroArea
-        natural join
+	IF numChm > 0 THEN
+           select metroAreaName, avg(gdp) as avggdp, championships
+           from MetroArea
+           natural join
                 (select metroAreaName, count(*) as championships
                 from Season as S
                 join Team as T
                 on S.champion = T.teamName and S.sport = T.sport
                 group by metroAreaName
-                having count(*) > 4) as C
-        group by metroAreaName
-        order by championships desc, metroAreaName asc;
+                having count(*) > numChm-1) as C
+           group by metroAreaName
+           order by championships desc, metroAreaName asc;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
