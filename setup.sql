@@ -115,10 +115,9 @@ END; //
 CREATE PROCEDURE Procedure7()
 BEGIN
 
-        
-        SELECT metroAreaName, gdp, avg(winPct) as 'winPercent'
+	SELECT metroAreaName, gdp, avg(winPct) as 'winPercent'
         FROM(
-                SELECT *, (wins/(wins+losses) * 100.00) as 'winPct'
+		SELECT *, (wins/(wins+losses) * 100.00) as 'winPct'
                 from ((TeamRecord NATURAL JOIN Team) NATURAL JOIN (
                         SELECT `year`, avg(gdp) as 'avgGDP'
                         from MetroArea
@@ -163,17 +162,22 @@ BEGIN
 END; //
 
 -- Procedure 9
-CREATE PROCEDURE Procedure9()
+CREATE PROCEDURE Procedure9(IN mtrA VARCHAR(50))
 BEGIN
 
-        select metroAreaName, numTeams, avg(population) as avgpopulation, avg(gdp) as avggdp
-        from MetroArea
-        natural join
+	IF EXISTS (SELECT * FROM MetroArea WHERE metroAreaName = mtrA) THEN
+           select metroAreaName, numTeams, avg(population) as avgpopulation, avg(gdp) as avggdp
+           from MetroArea
+           natural join
                 (select metroAreaName, count(*) as numTeams
                 from Team
                 group by metroAreaName) as N
-        group by metroAreaName
-        order by numTeams desc, metroAreaName asc;
+           group by metroAreaName
+	   having metroAreaName = mtrA
+           order by numTeams desc, metroAreaName asc;
+	ELSE
+	   select 'ERROR' as metroAreaName;
+	END IF;
         
 END; //
 
