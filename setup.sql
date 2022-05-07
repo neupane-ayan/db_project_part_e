@@ -54,8 +54,8 @@ BEGIN
                    from Team as T
                    inner join Season as S
                    on T.sport = S.sport and T.teamName = S.champion) as B
-           group by `year`;
-	   having `year` = yr
+           group by `year`
+	   having `year` = yr;
 	ELSE
 	   SELECT 'ERROR' AS `year`;
 	END IF;
