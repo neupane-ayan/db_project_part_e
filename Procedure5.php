@@ -1,11 +1,9 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h2> Average gdp, house price, and population of metro areas who has had a team in every sport in the last 20 years
-</h2>
-<body>
+<h2>Number of mvps (most-valuable-player) have been on a team in each metro-area</h2>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure1()";
+    $aQuery = "CALL Procedure5()";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";
