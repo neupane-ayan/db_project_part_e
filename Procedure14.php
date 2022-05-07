@@ -1,11 +1,10 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h2>Average GDP for metro-areas that have at least 5 championships</h2>
-<body>
+<h2>Average GDP for metro-areas that have at least [number] of championships<body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure14()";
-    
+    $numChmp = $_POST['numChmp'];
+    $aQuery = "CALL Procedure14('".$numChmp."');";
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";
 

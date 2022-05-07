@@ -1,12 +1,12 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h2>The gdp and averageHouse price of any metro-areas having at least five hall-of-fame caliber players the same year
+<h2>The gdp and averageHouse price of any metro-areas having at least [number] of hall-of-fame caliber players the same year
 </h2>
 <body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure12()";
-    
+    $numHoF = $_POST['numHoF'];
+    $aQuery = "CALL Procedure12(".$numHoF.");";
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";
 
