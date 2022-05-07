@@ -4,7 +4,8 @@
 <body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure9()";
+    $metroAreaName = $_POST['metroAreaName'];
+    $aQuery = "CALL Procedure9('".$metroAreaName."');";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";

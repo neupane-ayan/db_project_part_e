@@ -1,10 +1,12 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h2> Average GDP of championship winning Metro-Areas every year</h2>>
+<h2> Average GDP of championship winning Metro-Areas every year</h2>
 <body>
 <?php
     include 'open.php';
-    $aQuery = "CALL Procedure3()";
+    $yr = $_POST['year'];
+    $yr = $yr."-01-01";
+    $aQuery = "CALL Procedure3('".$yr."');";
     
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";
