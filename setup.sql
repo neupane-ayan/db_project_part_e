@@ -27,7 +27,7 @@ BEGIN
                 from Team
                 group by metroAreaName
                 having count(distinct sport) = 4) as M
-        group by metroAreaName
+        group by metroAreaName;
         
 END; //
 
@@ -54,7 +54,7 @@ BEGIN
                 from Team as T
                 inner join Season as S
                 on T.sport = S.sport and T.teamName = S.champion) as B
-        group by `year`
+        group by `year`;
         
 END; //
 
@@ -70,7 +70,7 @@ BEGIN
                 natural join Team
                 where wins/(wins+losses) >= 0.5
                 group by metroAreaName, `year`
-                having count(*) >= 4) as A
+                having count(*) >= 4) as A;
         
 END; //
 
@@ -103,7 +103,7 @@ BEGIN
                                 inner join Player as P
                                 on S.mvp = P.playerName) as A
                         ) as B
-                )as C
+                )as C;
         
 END; //
 
@@ -169,7 +169,7 @@ BEGIN
                 from Team
                 group by metroAreaName) as N
         group by metroAreaName
-        order by numTeams desc, metroAreaName asc
+        order by numTeams desc, metroAreaName asc;
         
 END; //
 
@@ -200,7 +200,7 @@ BEGIN
                         from MetroArea
                         natural join Team) as A
                 group by metroAreaName) as E
-        on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName 
+        on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName; 
         
 END; //
 
@@ -216,7 +216,7 @@ BEGIN
                 join Team as T
                 on S.champion = T.teamName and S.sport = T.sport
                 group by `year`, metroAreaName
-                having count(S.sport) > 1) as A
+                having count(S.sport) > 1) as A;
         
 END; //
 
@@ -234,7 +234,7 @@ BEGIN
                 where hallOfFame=1
                 group by `year`, metroAreaName
                 having count(playerID) > 4) as A
-        order by `year`, metroAreaName
+        order by `year`, metroAreaName;
         
 END; //
 
@@ -271,7 +271,7 @@ BEGIN
                 group by metroAreaName
                 having count(*) > 4) as C
         group by metroAreaName
-        order by championships desc, metroAreaName asc
+        order by championships desc, metroAreaName asc;
         
 END; //
 
