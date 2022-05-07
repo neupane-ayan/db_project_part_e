@@ -226,7 +226,8 @@ BEGIN
                         from MetroArea
                         natural join Team) as A
                 group by metroAreaName) as E
-           on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName;
+           on D.winPercent = E.winPercent and D.metroAreaName = E.metroAreaName
+	   WHERE D.metroAreaName=mtrA;
 	ELSE
 	   select 'ERROR' as metroAreaName;
 	END IF;
