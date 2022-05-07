@@ -44,17 +44,20 @@ BEGIN
 END; //
 
 -- Procedure 3
-CREATE PROCEDURE Procedure3()
+CREATE PROCEDURE Procedure3(IN yr CHAR(10))
 BEGIN
-
-        select `year`, avg(gdp)
-        from MetroArea as A
-        natural join
-                (select champion, S.sport as sport, metroAreaName, `year`
-                from Team as T
-                inner join Season as S
-                on T.sport = S.sport and T.teamName = S.champion) as B
-        group by `year`;
+	IF yr < '2001-01-01' or yr > '2020-01-01' THEN
+           select `year`, avg(gdp)
+       	   from MetroArea as A
+       	   natural join
+                   (select champion, S.sport as sport, metroAreaName, `year`
+                   from Team as T
+                   inner join Season as S
+                   on T.sport = S.sport and T.teamName = S.champion) as B
+           group by `year`;
+	ELSE
+	   SELECT 'ERROR' AS `year`;
+	END IF;
         
 END; //
 
