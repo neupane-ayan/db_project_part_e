@@ -173,7 +173,7 @@ BEGIN
                 GROUP BY metroAreaName) as minWins
 	     WHERE metroAreaName = mtrA;
 	 ELSE
-	     SELECT 'ERROR' AS metroAreaName
+	     SELECT 'ERROR' AS metroAreaName;
 	 END IF;
         
 END; //
