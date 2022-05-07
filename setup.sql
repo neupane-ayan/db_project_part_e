@@ -141,12 +141,13 @@ BEGIN
 END; //
 
 -- Procedure 8
-CREATE PROCEDURE Procedure8()
+CREATE PROCEDURE Procedure8(IN mtrA VARCHAR(50))
 BEGIN
 
 
-        SELECT metroAreaName, (maxGDPwins-minGDPwins)       
-        FROM
+	IF EXISTS (SELECT * FROM MetroArea WHERE metroAreaName = mtrA) THEN
+           SELECT metroAreaName, (maxGDPwins-minGDPwins)       
+           FROM
                 (SELECT metroAreaName, sum(wins) as 'maxGDPwins'
                 FROM        
                         ((SELECT MetroArea.metroAreaName, MetroArea.`year`, maxgdp
@@ -169,7 +170,11 @@ BEGIN
                         JOIN MetroArea ON MetroArea.metroAreaName=minGdpYear.MetroAreaName
                         WHERE gdp=mingdp) as minGDPs
                         NATURAL JOIN Team) NATURAL JOIN TeamRecord
-                GROUP BY metroAreaName) as minWins;
+                GROUP BY metroAreaName) as minWins
+	     WHERE metroAreaName = mtrA;
+	 ELSE
+	     SELECT 'ERROR' AS metroAreaName
+	 END IF;
         
 END; //
 
