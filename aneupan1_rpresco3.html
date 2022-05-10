@@ -125,9 +125,17 @@ a team in every sport in the last 20 years</h3>
 	<h3>INSERTION: Player</h3>
         <form action="CreatePlayer.php" method="post">
 	  playerID: <input type="text" name="playerID"> <br/>
-	  sport: <input type="text" name="sport"> <br/>
+	  sport: <select name="sport" id="sport">
+            <option value="basketball">Basketball</option>
+            <option value="football">Football</option>
+            <option value="hockey">Hockey</option>
+            <option value="baseball">Baseball</option>
+          </select><br>
 	  playerName: <input type="text" name="playerName"> <br/>
-	  hallOfFame: <input type="text" name="hallOfFame"> <br/>
+	  hallOfFame: <select name="hallOfFame" id="hallOfFame">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select><br>
 	  <input type="submit">
         </form>
         <br/><br/>
@@ -135,8 +143,13 @@ a team in every sport in the last 20 years</h3>
 	<h3>DELETION: Player</h3>
         <form action="DeletePlayer.php" method="post">
           playerID: <input type="text" name="playerID"> <br/>
-          sport: <input type="text" name="sport"> <br/>
-          <input type="submit">
+	  sport: <select name="sport" id="sport">
+            <option value="basketball">Basketball</option>
+            <option value="football">Football</option>
+            <option value="hockey">Hockey</option>
+            <option value="baseball">Baseball</option>
+          </select><br>
+	  <input type="submit">
         </form>
         <br/><br/>
 	
