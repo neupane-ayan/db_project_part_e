@@ -7,32 +7,14 @@
     include 'open.php';
     $numHoF = $_POST['numHoF'];
     $aQuery = "CALL Procedure12(".$numHoF.");";
+    $dataPoints = array();
+    $dataPoints2 = array();
     if ($result = mysqli_query($conn, $aQuery)) {
-       echo "<table border=\"2px solid black\">";
-
-          // output a row of table headers
-	      echo "<tr>";
-	      // collect an array holding all attribute names in $result
-	      $flist = $result->fetch_fields();
-          // output the name of each attribute in flist
-	      foreach($flist as $fname){
-	         echo "<th>".$fname->name."</th>";
-	      }
-	      echo "</tr>";
-
-          // output a row of table for each row in result, using flist names
-          // to obtain the appropriate attribute value for each column
-	      foreach($result as $row){
-
-              // reset the attribute names array
-    	      $flist = $result->fetch_fields(); 
-	          echo "<tr>";
-	          foreach($flist as $fname){
-                      echo "<td>".$row[$fname->name]."</td>";
-              }
-  	          echo "</tr>";
-	      }
-	      echo "</table>";
+       	foreach($result as $row){
+	   $lbl = $row["metroAreaName"].substr($row["year"], 0, 4);
+           array_push($dataPoints, array("label"=> $lbl, "y"=> $row["gdp"]));
+	   array_push($dataPoints2, array("label"=> $lbl, "y"=> $row["averageHousePrice"]));
+	}      
     }
     else {
          echo "<h2> ERROR: QUERY FAILED </h2>";
@@ -41,3 +23,55 @@
     $conn->close();
 ?>
 </body>
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+var numHoF = <?php echo $numHoF; ?>;  
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "GDP of metro-areas having at least " +numHoF+ " hall-of-fame caliber players the same year"
+	},
+	axisY: {
+	        includeZero: true,
+		title: "GDP in Millions of $USD"
+	},
+	data: [{
+		type: "column",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+var chart2 = new CanvasJS.Chart("chartContainer2", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title: {
+                text: "Average house price of metro-areas having at least " +numHoF+ " hall-of-fame caliber players the same year\
+"
+        },
+        axisY: {
+	        includeZero: true,
+                title: "avg house price in thousands of $USD"
+        },
+        data: [{
+                type: "column",
+                dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+        }]
+});
+chart2.render(); 
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 420px; width: 100%;"></div>
+<br>
+<div id="chartContainer2" style="height: 420px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+
