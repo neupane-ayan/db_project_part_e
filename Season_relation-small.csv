@@ -1,0 +1,18 @@
+sport,year,champion,mvp
+basketball,2001-01-01,LAL,Allen Iverson
+basketball,2020-01-01,LAL,Giannis Antetokounmpo
+basketball,2021-01-01,MIL,Nikola Jokić
+baseball,2001-01-01,ARI,Barry Bonds
+baseball,2019-01-01,WAS,Cody Bellinger
+baseball,2020-01-01,LAD,Freddie Freeman
+baseball,2021-01-01,ATL,Bryce Harper
+football,2001-01-01,NE,Kurt Warner
+football,2002-01-01,TAM,Rich Gannon
+football,2018-01-01,NE,Patrick Mahomes
+football,2019-01-01,KAN,Lamar Jackson
+football,2020-01-01,TAM,Aaron Rodgers
+football,2021-01-01,LAR,Aaron Rodgers
+hockey,2001-01-01,COL,Joe Sakic
+hockey,2002-01-01,DET,Jose Theodore
+hockey,2020-01-01,TBL,Leon Draisaitl
+hockey,2021-01-01,TBL,Connor McDavid
