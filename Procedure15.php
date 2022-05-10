@@ -29,6 +29,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		text: "Compare average metro-area GDP of NHL champions, NBA champions, NFL champions and MLB champions"
 	},
 	axisY: {
+	        includeZero: true,
 		title: "GDP in Millions of $USD"
 	},
 	data: [{

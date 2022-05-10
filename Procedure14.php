@@ -4,6 +4,7 @@
 <?php
     include 'open.php';
     $numChmp = $_POST['numChmp'];
+    $dataPoints = array();
     $aQuery = "CALL Procedure14('".$numChmp."');";
     if ($result = mysqli_query($conn, $aQuery)) {
        echo "<table border=\"2px solid black\">";
@@ -31,6 +32,9 @@
   	          echo "</tr>";
 	      }
 	      echo "</table>";
+	      foreach($result as $row){
+              array_push($dataPoints, array("label"=> $row["metroAreaName"], "y"=> $row["avggdp"]));
+    	      }  
     }
     else {
          echo "<h2> ERROR: QUERY FAILED </h2>";
@@ -39,3 +43,36 @@
     $conn->close();
 ?>
 </body>
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+var nChmp = <?php echo $numChmp; ?>; 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "Average GDP for metro-areas that have at least " + nChmp  + " championships"
+	},
+	axisY: {
+	        includeZero: true,
+		title: "GDP in Millions of $USD"
+	},
+	data: [{
+		type: "column",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
