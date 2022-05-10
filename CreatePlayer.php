@@ -9,7 +9,7 @@
 
     $result = mysqli_query($conn, $aQuery);
     if (mysqli_num_rows($result) > 0) {
-       echo "<h2> Player already exists! Try again </h2>";
+       echo "<h2> Player already exists! Try Again </h2>";
     } else {
        echo "<h2> Successfully added a player! </h2>";
        $stmt = $conn->prepare("INSERT INTO Player (playerID, sport, playerName, hallOfFame) VALUES (?, ?, ?, ?)");
