@@ -2,7 +2,7 @@
 
 <body>
 <?php
-    include = 'open.php';
+    include 'open.php';
     $mname = $_POST['metroAreaName'];
     $yr = $_POST['year']."-01-01";
     $aQuery1 = "SELECT * FROM MetroArea WHERE metroAreaName = '".$mname."' AND `year` = '".$yr."';";

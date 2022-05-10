@@ -1,23 +1,24 @@
 #RON PRESCOTT: rpresco3, AYAN NEUPANE: aneupan1
 
-<h2>Average GDP for metro-areas that have at least [number] of championships<body>
+<body>
 <?php
     include 'open.php';
     $numChmp = $_POST['numChmp'];
     $dataPoints = array();
     $aQuery = "CALL Procedure14('".$numChmp."');";
+    echo "<h2>Average GDP for metro-areas that have at least ".$numChmp." of championships</h2>";
     if ($result = mysqli_query($conn, $aQuery)) {
-       echo "<table border=\"2px solid black\">";
+       //echo "<table border=\"2px solid black\">";
 
           // output a row of table headers
-	      echo "<tr>";
+	      //echo "<tr>";
 	      // collect an array holding all attribute names in $result
 	      $flist = $result->fetch_fields();
           // output the name of each attribute in flist
 	      foreach($flist as $fname){
-	         echo "<th>".$fname->name."</th>";
+	         //echo "<th>".$fname->name."</th>";
 	      }
-	      echo "</tr>";
+	      //echo "</tr>";
 
           // output a row of table for each row in result, using flist names
           // to obtain the appropriate attribute value for each column
@@ -25,13 +26,13 @@
 
               // reset the attribute names array
     	      $flist = $result->fetch_fields(); 
-	          echo "<tr>";
+	          //echo "<tr>";
 	          foreach($flist as $fname){
-                      echo "<td>".$row[$fname->name]."</td>";
+                      //echo "<td>".$row[$fname->name]."</td>";
               }
-  	          echo "</tr>";
+  	          //echo "</tr>";
 	      }
-	      echo "</table>";
+	      //echo "</table>";
 	      foreach($result as $row){
               array_push($dataPoints, array("label"=> $row["metroAreaName"], "y"=> $row["avggdp"]));
     	      }  
