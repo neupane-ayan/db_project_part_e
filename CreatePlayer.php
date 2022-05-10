@@ -5,9 +5,10 @@
     include 'open.php';
     $pID = $_POST['playerID'];
     $spt = $_POST['sport'];
-    $aQuery = "SELECT * FROM Player WHERE playerID = ".$pID." AND sport = ".$spt.";";
+    $aQuery = "SELECT * FROM Player WHERE playerID = '".$pID."' AND sport = '".$spt."';";
 
-    if ($result = mysqli_query($conn, $aQuery)) {
+    $result = mysqli_query($conn, $aQuery);
+    if (mysqli_num_rows($result) > 0) {
        echo "<h2> Player already exists! Try again </h2>";
     } else {
        echo "<h2> Successfully added a player! </h2>";
