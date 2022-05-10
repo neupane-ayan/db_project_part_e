@@ -9,11 +9,19 @@
     $yr = $_POST['year']."-01-01";
     $aQuery1 = "SELECT * FROM PlaysOn WHERE playerID = '".$pID."' AND sport = '".$spt."' AND teamName = '".$tmname."' AND `year` = '".$yr."';";
     $aQuery2 = "SELECT * FROM Player WHERE playerID = '".$pID."' AND sport = '".$spt."';";
+    $aQuery3 = "SELECT * FROM Team WHERE teamName = '".$tmname."' AND sport = '".$spt."';";
+    $aQuery4 = "SELECT * FROM MetroArea WHERE `year` = '".$yr."';";
 
     $result1 = mysqli_query($conn, $aQuery1);
     $result2 = mysqli_query($conn, $aQuery2);
+    $result3 = mysqli_query($conn, $aQuery3);
+    $result4 = mysqli_query($conn, $aQuery4);
     if (mysqli_num_rows($result1) > 0) {
        echo "<h2> Player is already registered on this team that year </h2>";
+    } else if (mysqli_num_rows($result3) == 0) {
+       echo "<h2> Invalid Team! Try Again </h2>";
+    } else if (mysqli_num_rows($result4) == 0) {
+       echo "<h2> Invalid Year! Try Again </h2>";
     } else {
        echo "<h2> Successful player registration! </h2>";
        $stmt = $conn->prepare("INSERT INTO PlaysOn (playerID, sport, teamName, `year`) VALUES (?, ?, ?, ?)");
