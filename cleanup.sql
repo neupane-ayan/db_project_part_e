@@ -1,0 +1,23 @@
+drop table if exists MetroArea;
+drop table if exists PlaysOn;
+drop table if exists Player;
+drop table if exists Season;
+drop table if exists TeamRecord;
+drop table if exists Team;
+
+DROP PROCEDURE IF EXISTS Procedure1;
+DROP PROCEDURE IF EXISTS Procedure2;
+DROP PROCEDURE IF EXISTS Procedure3;
+DROP PROCEDURE IF EXISTS Procedure4;
+DROP PROCEDURE IF EXISTS Procedure5;
+DROP PROCEDURE IF EXISTS Procedure6;
+DROP PROCEDURE IF EXISTS Procedure7;
+DROP PROCEDURE IF EXISTS Procedure8;
+DROP PROCEDURE IF EXISTS Procedure9;
+DROP PROCEDURE IF EXISTS Procedure10;
+DROP PROCEDURE IF EXISTS Procedure11;
+DROP PROCEDURE IF EXISTS Procedure12;
+DROP PROCEDURE IF EXISTS Procedure13;
+DROP PROCEDURE IF EXISTS Procedure14;
+DROP PROCEDURE IF EXISTS Procedure15;
+DROP PROCEDURE IF EXISTS Procedure3ALL;
