@@ -14,6 +14,7 @@ DROP PROCEDURE IF EXISTS Procedure12;
 DROP PROCEDURE IF EXISTS Procedure13;
 DROP PROCEDURE IF EXISTS Procedure14;
 DROP PROCEDURE IF EXISTS Procedure15;
+DROP PROCEDURE IF EXISTS Procedure3ALL;
 
 DELIMITER //
 -- Procedure 1
@@ -64,6 +65,21 @@ BEGIN
 	   SELECT 'ERROR' AS `year`;
 	END IF;
         
+END; //
+
+-- Procedure 3ALL                                                                                              
+CREATE PROCEDURE Procedure3ALL()
+BEGIN
+           select `year`, avg(gdp)
+           from MetroArea as A
+           natural join
+                   (select champion, S.sport as sport, metroAreaName, `year`
+                   from Team as T
+                   inner join Season as S
+                   on T.sport = S.sport and T.teamName = S.champion) as B
+           group by `year`
+	   ORDER BY `year` ASC;
+
 END; //
 
 -- Procedure 4
