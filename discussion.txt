@@ -1,0 +1,34 @@
+>>Members:
+AYAN NEUPANE: aneupan1
+RON PRESCOTT: rpresco3
+
+>>Modifications:
+We changed a few of our queries because they were a little too ambitious. They dealt with a lot of time based 
+comparisons and were ambiguous. Ex: "How much does a city’s population grow by in the 5 years following 3 or more
+championships?” This were unnecessarily complex and we found queries that answered questions of similar topics
+that were sufficiently complex as well.
+
+>>Process:
+No updates.
+
+>>Successes:
+Getting the data into one place was definitely a huge challenge. The data for the four sports are
+scattered throughout sports reference. For each CSV, there was at least two different python scripts:
+one to clean the data and one to put the 4 (basketball, football, hockey and baseball) together.
+
+Some queries dealt with information from many different tables, so writing them was a tricky process.
+Numerous trial and error, and some sub-queries were nested up to 4 times just to get the data we
+needed.
+
+>>Known Issues:
+
+>>Extensions:
+A huge problem we encountered early on was very spotty data from before 2000, in both Metro Area
+information and sports information. We suspect that the lack of internet and technology had
+something to do with this dearth of info. A great extension would be to apply this info
+to the many years preceding 2000/2001, though I imagine that finding and verifying such data
+would be a nightmare.
+
+Another extension that would be cool is to see sports teams that changed cities. To see how
+the economics of a city affects how many sports franchises it can support. A noticeable move
+would be the Baltimore Bullets moving to DC when the economic state of Baltimore declined.
