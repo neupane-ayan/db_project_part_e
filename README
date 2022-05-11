@@ -2,3 +2,19 @@ AYAN NEUPANE: aneupan1
 RON PRESCOTT: rpresco3
 
 Nothing has been changed from previous parts.
+
+Wanted to let you guys (the graders) know that not all of our
+queries were compatible with CanvasJS because it only returned
+one result, so there was really nothing to chart/graph.
+A good number of our queries use canvasJS, and we also have
+much more than 10 queries, so I think we used canvasJS sufficiently.
+
+Furthermore, our insertion and deletion queries are marked with
+INSERTION and DELETION respectively.
+
+There are also informational queries, marked by INFORMATIONAL
+for you guys to get accurate names for the MetroAreas and team
+names because it gets confusing.
+
+Also, the database is good enough where you can use the full
+database (i.e: not the small). All the queries return instantly.
