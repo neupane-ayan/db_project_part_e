@@ -14,7 +14,7 @@
        echo "<h2> Must remove/update all teams in this metro area first </h2>";
     } else if (mysqli_num_rows($result1) > 0) {
        echo "<h2> Metro Area successfully removed! </h2>";
-       $stmt = $conn->prepare("DELETE FROM MetroaArea WHERE metroAreaName = ? AND `year` = ?");
+       $stmt = $conn->prepare("DELETE FROM MetroArea WHERE metroAreaName = ? AND `year` = ?");
        $stmt->bind_param("ss", $metroAreaName, $year);
 
        $metroAreaName = $_POST['metroAreaName'];
